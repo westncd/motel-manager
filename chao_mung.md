@@ -8,5 +8,3 @@
 6. Đỗ Quyết Thắng
 7. Nguyễn Mậu Thành
 8. Nguyễn Ngọc Bảo Tuấn
-
-CHÀO MỪNG ĐẾN VỚI PROJECT CỦA CHÚNG TAO
