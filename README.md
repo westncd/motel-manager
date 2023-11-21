@@ -1,4 +1,4 @@
-# CONG-NGHE-PHAN-MEM
+# Quản lý chi tiêu
 8 thằng đẹp zai:
 1. Bùi Xuân Sơn
 2. Phạm Năng Ân
