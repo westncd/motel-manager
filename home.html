@@ -15,14 +15,14 @@
     <h2>Chọn vai trò</h2>
 
     <div id="select-buttons">
-    <button onclick="showHostLogin()">Chủ</button>
-    <button onclick="showTenantLogin()">Khách</button>
+    <button onclick="showHostLogin()">Chủ trọ</button>
+    <button onclick="showTenantLogin()">Khacs thuê</button>
     </div>
 
     <div id="host-login" style="display:none">
       <p>Nhập ID trọ:</p>  
       <input type="text" id="host-id">
-      <button onclick="loginHost()">Truy cập</button>
+      <button onclick="loginHost()">Login</button>
     </div>
 
     <div id="tenant-login" style="display:none">
@@ -30,7 +30,7 @@
       <input type="text" id="motel-id">
       <p>Số phòng:</p>
       <input type="text" id="room-no">
-      <button onclick="loginTenant()">Truy cập</button>
+      <button onclick="loginTenant()">Login</button>
     </div>
 
   </div>
