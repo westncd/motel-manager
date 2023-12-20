@@ -26,23 +26,25 @@ void inputForUser(string matro, string sophong){
 class Khachvanglai{
 	private:
 		string name, gender;
-		int namsinh;
+		string namsinh;
 		long sdt;
-		long cccd;
+		string cccd;
 		string thongbao;
 	public:
-		Khachvanglai(): name(""), gender(""), namsinh(0), sdt(0) {}
+		Khachvanglai(): name(""), gender(""), namsinh(""), sdt(0) {}
 		
 		void input(){
 			cout <<"Ho va ten: "; getline(cin,this->name);
 			cout <<"Gioi tinh: "; getline(cin,this->gender);
-			cout <<"Nam sinh: "; cin >> this->namsinh; cin.ignore();
+			cout <<"Ngay/thang/nam sinh: "; getline(cin,this->namsinh);
+			cout <<"CCCD: "; getline(cin,this->cccd);
 			cout <<"Sdt: "; cin >> this->sdt; cin.ignore();
 		}
 		void output(){
 			cout <<"Ho va ten: "<<this->name<<endl;
-			cout <<"Nam sinh: "<<this->gender<<endl;
-			cout <<"Nam sinh: "<<this->namsinh<<endl;
+			cout <<"Gioi tinh: "<<this->gender<<endl;
+			cout <<"Ngay/thang/nam sinh: "<<this->namsinh<<endl;
+			cout <<"CCCD: "<<this->cccd<<endl;
 			cout <<"Sdt: "<<this->sdt<<endl;
 		}
 
@@ -81,21 +83,18 @@ class Chutro: public Khachvanglai{
 class Khachtro: public Khachvanglai{
 	private:
 		string quequan;
-		long cccd;
 	public:
-		Khachtro(): Khachvanglai(), quequan(""), cccd(0) {}
+		Khachtro(): Khachvanglai(), quequan("") {}
 	
 		void input(){
 			cout <<"--Nhap thong khach tro--"<<endl;
 			Khachvanglai::input();
 			cout <<"Que quan: "; getline(cin,this->quequan);
-			cout <<"CCCD: "; cin>>this->cccd;
 		}
 		void output(){
 			cout <<"--Thong tin khach tro--"<<endl;
 			Khachvanglai::output();
 			cout <<"Que quan: "<<this->quequan<<endl;
-			cout <<"CCCD: "<<this->cccd<<endl;
 		}
 
 		string getthongbao(){
@@ -161,6 +160,17 @@ class Phongtro : public Khutro{
 
 int main(){
 	
+	string tb;
+	string tk, mk;
+	bool run1 = true, run2 = true, run3 = true, run4 = true;
+	int choice1, choice2, index = 0, index1 = 0;
+	string matro, sophong;
+
+	Khachtro khachtro;
+	Chutro chutro;
+	Khutro ds[100];
+	Phongtro ds1[100];
+	Chutro ds2[index1]; // chuyen tinh chi phi phat sinh
     system("cls");
 
     cout << endl << endl;
@@ -184,6 +194,7 @@ int main(){
     cout << endl;
     cout << endl << ">><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<" << endl << endl;
 
+do{
     int los;
     do{
         cout << "1. Dang nhap." << endl << "2. Dang ky." << endl << "Nhap lua chon cua ban (1/2): "; cin >> los; cin.ignore();
@@ -197,22 +208,10 @@ int main(){
             signup();
             break;
     }
-	string tb;
-	string tk, mk;
-	bool run1 = true, run2 = true, run3 = true, run4 = true;
-	int choice1, choice2, index = 0, index1 = 0;
-	string matro, sophong;
-
-	Khachtro khachtro;
-	Chutro chutro;
-	Khutro ds[100];
-	Phongtro ds1[100];
-	Chutro ds2[index1]; // chuyen tinh chi phi phat sinh
 	
 	cout << endl;
 	//chon tu cach va dien thong tin
-	
-if(success == true){
+	if(success ==  true){ 
 		ChoseYourRole(choice1);
 		system("cls");
 		//xu ly cac chuc nang
@@ -247,6 +246,7 @@ if(success == true){
 						break;
 					}
 					case 2:{
+						int choice6;
 						system("cls");
 						cout <<"--Danh sach khu tro--"<<endl;
 
@@ -257,6 +257,34 @@ if(success == true){
 							else cout << "thong bao: " << tb << endl;
 							cout <<"-----------------"<<endl;
 						}
+							cout << "Ban muon xem chi tiet khu tro so may? " << "(1 - " << index << ")" << endl;
+							cout << "=> Bam nut: "; cin >> choice6; cin.ignore();
+							ds[choice6-1].xuat();
+							
+								bool run7 = false;
+							do{
+								cout <<"1.Them phong"<<endl;
+								cout <<"2.Xem phong"<<endl;
+								int choice7;
+								int index2 = 0;
+								cout <<"=>Bam nut"; cin >> choice7;
+
+								switch(choice7){
+									case 1:{
+										Phongtro c;
+										c.nhap();
+										ds1[index2] = c;
+										break;
+									}
+									case 2:{
+
+
+									}
+
+								}
+
+							}while(run7);
+
 							system("pause");
 						system("cls");
 						break;
@@ -354,8 +382,8 @@ if(success == true){
 		}
 
 
-
-	}else cout << "lmao";
+	}
+}while(success == false);
 	return 0;
 }
 
