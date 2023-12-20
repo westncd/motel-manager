@@ -469,7 +469,7 @@ void signup(){
     string acc, pass;
     string tk[100], mk[100], mk2[10];
     ifstream taikhoan("D:\\code\\.cpp files\\data\\username.txt", ios :: in);
-    ifstream matkhau("D:\\code\\.cpp files\\data\\username.txt", ios :: in);
+    ifstream matkhau("D:\\code\\.cpp files\\data\\password.txt", ios :: in);
 
     ofstream username("D:\\code\\.cpp files\\data\\username.txt", ios :: app); 
     ofstream password("D:\\code\\.cpp files\\data\\password.txt", ios :: app);
