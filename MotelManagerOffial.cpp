@@ -7,7 +7,6 @@
 using namespace std;
 
 bool success = false;
-
 void login(), signup();
 
 //ham chon vai tro ( chu tro hay khach thue )
@@ -18,7 +17,7 @@ void ChoseYourRole(int &choice1){
 	cout <<"=>Bam nut: "; cin >> choice1; cin.ignore();
 }
 // ham nhap ma tro va nhap so phong cho khach thue
-void inputForUser(string matro, string sophong){
+void inputForUser(string &matro, string &sophong){
 	cout <<"Nhap ma tro: "; getline(cin,matro);
 	cout <<"Nhap so phong: "; getline(cin,sophong);	
 }
@@ -47,6 +46,12 @@ class Khachvanglai{
 			cout <<"CCCD: "<<this->cccd<<endl;
 			cout <<"Sdt: "<<this->sdt<<endl;
 		}
+		long getSTD(){
+			return this->sdt;
+		}
+		string getName(){
+			return this->name;
+		}
 };
 class Chutro: public Khachvanglai{
 	private:
@@ -74,6 +79,14 @@ class Chutro: public Khachvanglai{
 		long getChiPhi(){
 			return this->chiphi;
 		}
+		long getSTD(){
+			
+			return Khachvanglai :: getSTD();
+		}
+		string getName(){
+			return Khachvanglai :: getName();
+		}
+
 
 };
 class Khachtro: public Khachvanglai{
@@ -117,8 +130,13 @@ class Khutro{
 			cout <<"ID khu tro: "<<this->idmotel<<endl;
 		}
 		string getNamemotel(){ return this->namemotel; }
-		
+		string getIDmotel(){
+			return this->idmotel;
+		}
 		void setThongbao(string thongbao){ this->thongbao = thongbao; }
+		string getThongbao(){
+			return this->thongbao;
+		}
 };
 class Phongtro : public Khutro{
 	private:
@@ -159,8 +177,9 @@ class Phongtro : public Khutro{
 int main(){
 	string tb;
 	string tk, mk;
-	bool run1 = true, run2 = true, run3 = true, run4 = true, run7 = true, run9 = true;
-	int choice1, choice2,choice3, choice5, choice6, choice7, index = 0, index1 = 0, index2 = 0, index4 = 0;
+	bool run1 = true, run2 = true, run3 = true, run4 = true, run7 = true, run9 = true, run10 = true, run11 = true, run12 = true;
+	int choice1, choice2,choice3, choice5, choice6, choice7, choice10, index = 0, index1 = 0, index2 = 0, index4 = 0;
+	int mtro, ptro;
 	string matro, sophong;
 	long total;
 	Khachtro khachtro;
@@ -185,8 +204,8 @@ int main(){
 	do{
     	int los;
     	do{
-        cout << "1. Dang nhap." << endl << "2. Dang ky." << endl << "=>Bam nut: "; cin >> los; cin.ignore();
-    }while(los <= 0 || los > 2);
+        cout << "1. Dang nhap." << endl << "2. Dang ky." << endl << "3. Thoat" << endl << "=>Bam nut: "; cin >> los; cin.ignore();
+    }while(los <= 0 || los > 3);
 
     switch(los){
         case 1:
@@ -195,6 +214,10 @@ int main(){
         case 2:
             signup();
             break;
+        case 3:
+        	cout << "TAM BIET QUY KHACH!";
+        	return 0;
+    
     }
 	
 	cout << endl;
@@ -205,8 +228,7 @@ int main(){
 		//xu ly cac chuc nang
 		if(choice1 == 1){
 			//nhap thong tin chu tro
-			cout <<"--Thong tin chu tro--"<<endl;
-			chutro.input(); 
+			run2 = true;
 			system("cls");
 			do{
 				system("cls");
@@ -215,12 +237,13 @@ int main(){
 				cout << " | | | | | |  __/ | | | |_| | " << endl;
 				cout << " |_| |_| |_|\\___|_| |_|\\__,_| " << endl;
 				cout << "                              " << endl;
-				cout <<"1.Them khu tro"<<endl;
-				cout <<"2.Danh sach khu tro"<<endl;
-				cout <<"3.Thong bao"<<endl;
-				cout <<"4.Chi phi phat sinh"<<endl;
-				cout <<"5.Thong tin chu tro"<<endl;
-				cout <<"6.Dang xuat"<<endl;
+				cout <<"1. Them khu tro"<<endl;
+				cout <<"2. Danh sach khu tro"<<endl;
+				cout <<"3. Thong bao"<<endl;
+				cout <<"4. Chi phi phat sinh"<<endl;
+				cout <<"5. Nhap thong tin ca nhan" << endl;
+				cout <<"6. Thong tin chu tro"<<endl;
+				cout <<"7. Dang xuat"<<endl;
 
 				cout <<"=>Bam nut: "; cin >> choice2; cin.ignore();
 				switch(choice2){
@@ -380,45 +403,152 @@ int main(){
 						}while(run3);
 						break;
 					}
-					case 5:{
+					case 5:
+						system("cls");
+						cout <<"--Thong tin chu tro--"<<endl;
+						chutro.input();
+						//system("pause");
+						break;
+
+					case 6:{
 						system("cls");
 						cout <<"----Thong tin chu tro-----"<<endl;
 						chutro.output();
 						system("pause");
 						break;
 					}
-					default:
-						run2 = false;
-						cout <<"Hen gap lai!"<<endl;
+					case 7:{
+						system("cls");
+						do{
+							cout << "Ban co muon dang xuat tai khoan? " << endl << "1. Co" << endl << "2. Khong" << endl <<"=> Bam nut: "; cin >> choice10; cin.ignore();
+							switch(choice10){
+								case 1:
+									success = false;
+									run10 = false;
+									run2 = false;
+									system("cls");
+									break;
+								case 2:
+									break;
+							}
+						}while(run10);
 						break;
+					}
 				}
 
 			}while(run2);
 
 		}else if(choice1 == 2){
 			int choice4;
-			inputForUser(matro,sophong);
+			bool ktra = true;
+			run11 = true;
 			do{
-			cout << "  _ __ ___   ___ _ __  _   _  " << endl;
-			cout << " | '_ ` _ \\ / _ \\ '_ \\| | | | " << endl;
-			cout << " | | | | | |  __/ | | | |_| | " << endl;
-			cout << " |_| |_| |_|\\___|_| |_|\\__,_| " << endl;
-			cout << "                              " << endl;
-			cout <<"1.Thong tin khu tro"<<endl;
-			cout <<"2.Thong tin phong tro"<<endl;
-			cout <<"3.Dong tien"<<endl;
-			cout <<"4.Lien he chu tro"<<endl;
-			cout <<"5.Dang xuat"<<endl;
-			do{
-			cout << "Nhap lua chon cua ban: "; cin >> choice4;
-			}while(choice4 < 0 || choice4 > 5);
+				cout <<"Nhap ma tro: "; getline(cin,matro);
+
+				for(int i = 0; i < index; i ++)
+					if(ds[i].getIDmotel() == matro){
+							ktra = true;
+							mtro = i+1;
+							break;
+						}
+					else
+						ktra = false;
+				
+				if(ktra == false)
+					cout << "ID khong hop le!" << endl;
+				else{
+					bool ktra2 = true;
+					do{
+					cout <<"Nhap so phong: "; getline(cin,sophong);
+					for(int i = 0; i < index2; i++)
+						if(pt[mtro][i].getNameroom() == sophong){
+							ktra2 = true;
+							ptro = i;
+							break;
+						}
+						else 
+							ktra2 = false;
+					if(ktra2 == false)
+						cout << "So phong khong hop le!" << endl;
+					else
+						break;
+					}while(true);
+					break;
+				}
 			}while(true);
 
+			do{
+				system("cls");
+				cout << "  _ __ ___   ___ _ __  _   _  " << endl;
+				cout << " | '_ ` _ \\ / _ \\ '_ \\| | | | " << endl;
+				cout << " | | | | | |  __/ | | | |_| | " << endl;
+				cout << " |_| |_| |_|\\___|_| |_|\\__,_| " << endl;
+				cout << "                              " << endl;
+				cout <<"1. Thong tin khu tro"<<endl;
+				cout <<"2. Thong tin phong tro"<<endl;
+				cout <<"3. Dong tien"<<endl;
+				cout <<"4. Lien he chu tro"<<endl;
+				cout <<"5. Thong bao" << endl;
+				cout <<"6. Dang xuat"<<endl;
+				do{
+				cout << "Nhap lua chon cua ban: "; cin >> choice4;cin.ignore();
+				}while(choice4 < 0 || choice4 > 6);
+
+					switch(choice4){
+						case 1:
+							system("cls");
+							cout << "-- Thong tin khu tro --" << endl;
+							ds[mtro].xuat();
+							system("pause");
+							break;
+						case 2:
+							system("cls");
+							pt[mtro][ptro].xuat();
+							system("pause");
+							break;
+						case 3:
+							system("cls");
+							cout <<"--Thong tin lien he--"<<endl;
+							cout << "Zalo: " << chutro.getSTD() << endl;
+							cout << "So tai khoan: 01234599999" << endl << "MB BANK" << endl << "Chu tai khoan: " << chutro.getName() << endl;
+							system("pause");
+							break;
+						case 4:
+							system("cls");
+							cout << "-- Thong tin chu tro --" << endl << "Ho va ten: " << chutro.getName() << endl << "Sdt: 0" << chutro.getSTD() << endl << "Dia chi: 238 Nguyen Trai, Thanh Xuan Trung, Thanh Xuan, Ha Noi" << endl;
+							system("pause");
+							break;
+						case 5:
+							system("cls");
+							cout <<"Khu tro "<<ds[mtro].getNamemotel()<<" - Phong "<<pt[mtro][ptro].getNameroom()<<endl;
+							cout << "Thong bao: " << ds[mtro].getThongbao() << endl;
+							system("pause");
+							break;
+						case 6:
+							system("cls");
+								do{
+									cout << "Ban co muon dang xuat tai khoan? " << endl << "1. Co" << endl << "2. Khong" << endl <<"=> Bam nut: "; cin >> choice10; cin.ignore();
+									switch(choice10){
+										case 1:
+											success = false;
+											run11 = false;
+											run12 = false;
+											system("cls");
+											break;
+										case 2:
+											break;
+									}
+								}while(run12);
+								break;
+
+					}
+			}while(run11);
 		}
 	}
 	}while(success == false);
 	return 0;
 }
+
 
 void login(){
     system("cls");
@@ -439,8 +569,8 @@ void login(){
     int count = 0, check = 0;
     string acc, pass;
 
-    ifstream taikhoan("D:\\code\\.cpp files\\data\\username.txt", ios :: in);
-    ifstream password("D:\\code\\.cpp files\\data\\password.txt", ios :: in);
+    ifstream taikhoan("D:\\code\\cpp\\data\\username.txt", ios :: in);
+    ifstream password("D:\\code\\cpp\\data\\password.txt", ios :: in);
     taikhoan >> tk[0];
     password >> mk[0];
 
@@ -451,6 +581,7 @@ void login(){
             check++;
         }
     }
+	
     int newacc;
     if(check == 0){
         cout << "Ten dang nhap khong ton tai!" << endl << "Ban co muon tao tai khoan moi ?" << endl;
@@ -471,7 +602,7 @@ void login(){
     cout << "Nhap mat khau:      "; cin >> matkhau[0]; 
 
     taikhoan.close();
-    ifstream account("D:\\code\\.cpp files\\data\\username.txt", ios :: in);
+    ifstream account("D:\\code\\cpp\\data\\username.txt", ios :: in);
     account >> tk[0];
     while(!account.eof()){
         getline(account, acc);
@@ -502,11 +633,13 @@ void signup(){
     cout << endl << ">><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<" << endl << endl;
     string acc, pass;
     string tk[100], mk[100], mk2[10];
-    ifstream taikhoan("D:\\code\\.cpp files\\data\\username.txt", ios :: in);
-    ifstream matkhau("D:\\code\\.cpp files\\data\\username.txt", ios :: in);
+    ifstream taikhoan("D:\\code\\cpp\\data\\username.txt", ios :: in);
+    ifstream matkhau("D:\\code\\cpp\\data\\username.txt", ios :: in);
 
-    ofstream username("D:\\code\\.cpp files\\data\\username.txt", ios :: app); 
-    ofstream password("D:\\code\\.cpp files\\data\\password.txt", ios :: app);
+
+    ofstream username("D:\\code\\cpp\\data\\username.txt", ios :: app); 
+    ofstream password("D:\\code\\cpp\\data\\password.txt", ios :: app);
+
 
     cout << "Nhap ten dang nhap moi: "; cin >> tk[0]; 
         while(!taikhoan.eof()){
@@ -517,6 +650,7 @@ void signup(){
                     cout << "Nhap lai ten dang nhap: "; cin >> tk[0]; 
                 }while(tk[0] == acc);
         }
+
 
     cout << "Nhap mat khau:      "; cin >> mk[0]; 
     cout << "Xac nhan mat khau:  "; cin >> mk2[0];
